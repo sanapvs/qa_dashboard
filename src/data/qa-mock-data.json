@@ -1,0 +1,265 @@
+{
+  "project": "Hapticware QA Suite",
+  "lastUpdated": "2026-05-20T10:00:00Z",
+  "summary": {
+    "total": 24,
+    "passed": 16,
+    "failed": 5,
+    "skipped": 3
+  },
+  "testRuns": [
+    { "date": "2026-05-14", "passed": 12, "failed": 6, "skipped": 2 },
+    { "date": "2026-05-15", "passed": 14, "failed": 4, "skipped": 2 },
+    { "date": "2026-05-16", "passed": 13, "failed": 5, "skipped": 2 },
+    { "date": "2026-05-17", "passed": 15, "failed": 3, "skipped": 2 },
+    { "date": "2026-05-18", "passed": 14, "failed": 4, "skipped": 2 },
+    { "date": "2026-05-19", "passed": 15, "failed": 5, "skipped": 0 },
+    { "date": "2026-05-20", "passed": 16, "failed": 5, "skipped": 3 }
+  ],
+  "testCases": [
+    {
+      "id": "TC-001",
+      "title": "User login with valid credentials",
+      "module": "Authentication",
+      "priority": "High",
+      "status": "Passed",
+      "duration": 1.2,
+      "lastRun": "2026-05-20T09:10:00Z",
+      "tags": ["smoke", "auth"]
+    },
+    {
+      "id": "TC-002",
+      "title": "User login with invalid password",
+      "module": "Authentication",
+      "priority": "High",
+      "status": "Passed",
+      "duration": 0.9,
+      "lastRun": "2026-05-20T09:11:00Z",
+      "tags": ["auth"]
+    },
+    {
+      "id": "TC-003",
+      "title": "Password reset email sent",
+      "module": "Authentication",
+      "priority": "Medium",
+      "status": "Failed",
+      "duration": 2.4,
+      "lastRun": "2026-05-20T09:12:00Z",
+      "errorMessage": "SMTP connection timed out after 2000ms",
+      "tags": ["auth", "email"]
+    },
+    {
+      "id": "TC-004",
+      "title": "Dashboard loads within 2 seconds",
+      "module": "Performance",
+      "priority": "High",
+      "status": "Passed",
+      "duration": 1.8,
+      "lastRun": "2026-05-20T09:15:00Z",
+      "tags": ["performance", "smoke"]
+    },
+    {
+      "id": "TC-005",
+      "title": "API response under 500ms",
+      "module": "Performance",
+      "priority": "High",
+      "status": "Failed",
+      "duration": 3.1,
+      "lastRun": "2026-05-20T09:16:00Z",
+      "errorMessage": "Expected <500ms but got 723ms",
+      "tags": ["performance", "api"]
+    },
+    {
+      "id": "TC-006",
+      "title": "Upload file under 5MB",
+      "module": "File Upload",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 1.5,
+      "lastRun": "2026-05-20T09:20:00Z",
+      "tags": ["upload"]
+    },
+    {
+      "id": "TC-007",
+      "title": "Reject file over 10MB",
+      "module": "File Upload",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 0.7,
+      "lastRun": "2026-05-20T09:21:00Z",
+      "tags": ["upload", "validation"]
+    },
+    {
+      "id": "TC-008",
+      "title": "CSV import parses correctly",
+      "module": "File Upload",
+      "priority": "High",
+      "status": "Failed",
+      "duration": 2.9,
+      "lastRun": "2026-05-20T09:22:00Z",
+      "errorMessage": "Column headers not detected in row 1",
+      "tags": ["upload", "csv"]
+    },
+    {
+      "id": "TC-009",
+      "title": "Search filters by test name",
+      "module": "Search & Filter",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 0.6,
+      "lastRun": "2026-05-20T09:25:00Z",
+      "tags": ["search"]
+    },
+    {
+      "id": "TC-010",
+      "title": "Filter by status: Failed",
+      "module": "Search & Filter",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 0.5,
+      "lastRun": "2026-05-20T09:26:00Z",
+      "tags": ["search", "filter"]
+    },
+    {
+      "id": "TC-011",
+      "title": "Export report as PDF",
+      "module": "Reporting",
+      "priority": "Low",
+      "status": "Skipped",
+      "duration": 0,
+      "lastRun": "2026-05-20T09:30:00Z",
+      "tags": ["export", "reporting"]
+    },
+    {
+      "id": "TC-012",
+      "title": "Export report as CSV",
+      "module": "Reporting",
+      "priority": "Low",
+      "status": "Skipped",
+      "duration": 0,
+      "lastRun": "2026-05-20T09:31:00Z",
+      "tags": ["export", "reporting"]
+    },
+    {
+      "id": "TC-013",
+      "title": "Dashboard responsive on mobile",
+      "module": "UI/UX",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 1.1,
+      "lastRun": "2026-05-20T09:35:00Z",
+      "tags": ["responsive", "ui"]
+    },
+    {
+      "id": "TC-014",
+      "title": "Chart renders with empty data",
+      "module": "UI/UX",
+      "priority": "Low",
+      "status": "Passed",
+      "duration": 0.8,
+      "lastRun": "2026-05-20T09:36:00Z",
+      "tags": ["chart", "ui"]
+    },
+    {
+      "id": "TC-015",
+      "title": "Dark mode toggle persists on refresh",
+      "module": "UI/UX",
+      "priority": "Low",
+      "status": "Skipped",
+      "duration": 0,
+      "lastRun": "2026-05-20T09:37:00Z",
+      "tags": ["ui", "settings"]
+    },
+    {
+      "id": "TC-016",
+      "title": "Session expires after 30 minutes",
+      "module": "Authentication",
+      "priority": "High",
+      "status": "Passed",
+      "duration": 1.3,
+      "lastRun": "2026-05-20T09:40:00Z",
+      "tags": ["auth", "security"]
+    },
+    {
+      "id": "TC-017",
+      "title": "Concurrent users load test (50 users)",
+      "module": "Performance",
+      "priority": "High",
+      "status": "Passed",
+      "duration": 8.2,
+      "lastRun": "2026-05-20T09:45:00Z",
+      "tags": ["performance", "load"]
+    },
+    {
+      "id": "TC-018",
+      "title": "JSON import with nested structure",
+      "module": "File Upload",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 1.7,
+      "lastRun": "2026-05-20T09:50:00Z",
+      "tags": ["upload", "json"]
+    },
+    {
+      "id": "TC-019",
+      "title": "Filter by module resets correctly",
+      "module": "Search & Filter",
+      "priority": "Low",
+      "status": "Passed",
+      "duration": 0.4,
+      "lastRun": "2026-05-20T09:55:00Z",
+      "tags": ["filter"]
+    },
+    {
+      "id": "TC-020",
+      "title": "Trend chart date range selection",
+      "module": "Reporting",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 1.0,
+      "lastRun": "2026-05-20T10:00:00Z",
+      "tags": ["chart", "reporting"]
+    },
+    {
+      "id": "TC-021",
+      "title": "Summary cards update on filter",
+      "module": "UI/UX",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 0.6,
+      "lastRun": "2026-05-20T10:05:00Z",
+      "tags": ["ui", "filter"]
+    },
+    {
+      "id": "TC-022",
+      "title": "Error message shown on failed test click",
+      "module": "UI/UX",
+      "priority": "Medium",
+      "status": "Passed",
+      "duration": 0.5,
+      "lastRun": "2026-05-20T10:06:00Z",
+      "tags": ["ui"]
+    },
+    {
+      "id": "TC-023",
+      "title": "XSS injection in search field",
+      "module": "Security",
+      "priority": "High",
+      "status": "Passed",
+      "duration": 0.9,
+      "lastRun": "2026-05-20T10:10:00Z",
+      "tags": ["security", "validation"]
+    },
+    {
+      "id": "TC-024",
+      "title": "SQL injection in file name",
+      "module": "Security",
+      "priority": "High",
+      "status": "Failed",
+      "duration": 1.4,
+      "lastRun": "2026-05-20T10:11:00Z",
+      "errorMessage": "Sanitization did not strip semicolon in filename",
+      "tags": ["security", "validation"]
+    }
+  ]
+}
