@@ -1,37 +1,56 @@
-function TrendChart({ testRuns }) {
-  const max = Math.max(...testRuns.map(r => r.passed + r.failed))
+import { useEffect, useRef } from "react"
+import { Chart, registerables } from "chart.js"
+import data from "../data/qa-mock-data.json"
+
+Chart.register(...registerables)
+
+function TrendChart() {
+  const canvasRef = useRef(null)
+  const chartRef = useRef(null)
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.destroy()
+    }
+
+    const labels = data.testRuns.map(r => r.date.slice(5))
+    const passed = data.testRuns.map(r => r.passed)
+    const failed = data.testRuns.map(r => r.failed)
+    const skipped = data.testRuns.map(r => r.skipped ?? 0)
+
+    chartRef.current = new Chart(canvasRef.current, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [
+          { label: "Passed", data: passed, backgroundColor: "#22c55e", borderRadius: 3 },
+          { label: "Failed", data: failed, backgroundColor: "#ef4444", borderRadius: 3 },
+          { label: "Skipped", data: skipped, backgroundColor: "#f59e0b", borderRadius: 3 },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: "bottom", labels: { font: { size: 12 }, boxWidth: 12, padding: 16 } },
+        },
+        scales: {
+          x: { ticks: { font: { size: 11 } }, grid: { display: false } },
+          y: { ticks: { font: { size: 11 } }, beginAtZero: true },
+        },
+      },
+    })
+
+    return () => chartRef.current?.destroy()
+  }, [])
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
+    <div className="bg-white border border-gray-200 rounded-lg p-5 mb-6">
       <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-4">
         Pass / fail trend — last 7 days
       </p>
-      <div className="flex items-end gap-2 h-20">
-        {testRuns.map(run => (
-          <div key={run.date} className="flex-1 flex flex-col items-center gap-1">
-            <div className="flex items-end gap-0.5 w-full justify-center" style={{ height: "64px" }}>
-              <div
-                className="w-3 bg-green-500 rounded-t"
-                style={{ height: `${(run.passed / max) * 64}px` }}
-                title={`Passed: ${run.passed}`}
-              />
-              <div
-                className="w-3 bg-red-400 rounded-t"
-                style={{ height: `${(run.failed / max) * 64}px` }}
-                title={`Failed: ${run.failed}`}
-              />
-            </div>
-            <span className="text-xs text-gray-400">{run.date.slice(5)}</span>
-          </div>
-        ))}
-      </div>
-      <div className="flex gap-4 mt-3">
-        <div className="flex items-center gap-1.5 text-xs text-gray-500">
-          <div className="w-2 h-2 rounded-full bg-green-500" /> Passed
-        </div>
-        <div className="flex items-center gap-1.5 text-xs text-gray-500">
-          <div className="w-2 h-2 rounded-full bg-red-400" /> Failed
-        </div>
+      <div style={{ position: "relative", height: "200px" }}>
+        <canvas ref={canvasRef} />
       </div>
     </div>
   )
