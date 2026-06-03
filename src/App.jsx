@@ -45,12 +45,24 @@ function App() {
       )
     })
   }, [filters, testCases])
+  
+  const lastRun = useMemo(() => {
+  if (!testCases.length) return "N/A"
+  const latest = testCases.reduce((a, b) =>
+    new Date(a.lastRun) > new Date(b.lastRun) ? a : b
+  )
+  return new Date(latest.lastRun).toLocaleDateString("en-IN", {
+    day: "numeric", month: "long", year: "numeric"
+  })
+}, [testCases])
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 max-w-6xl mx-auto">
       <div className="mb-6">
         <h1 className="text-xl font-semibold text-gray-800">QA Dashboard</h1>
-        <p className="text-sm text-gray-400">Hapticware Intelligence · Last run: 20 May 2026</p>
+        <p className="text-sm text-gray-400">
+  Hapticware Intelligence · Last run: {lastRun}
+</p>
       </div>
 
       <FileUpload onDataLoaded={handleDataLoaded} />
