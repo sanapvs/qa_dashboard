@@ -1,22 +1,22 @@
 import { useState, useMemo } from "react"
 import defaultData from "./data/qa-mock-data.json"
-import SummaryCards from "./components/SummaryCards"
+import Login from "./components/Login"
+import FileUpload from "./components/FileUpload"
+import HealthCard from "./components/HealthCard"
+import StatCards from "./components/StatCards"
 import TrendChart from "./components/TrendChart"
-import { aggregateTestData } from "./components/chartUtils"
+import PriorityPanel from "./components/PriorityPanel"
+import ModulePanel from "./components/ModulePanel"
 import FilterBar from "./components/FilterBar"
 import TestTable from "./components/TestTable"
-import FileUpload from "./components/FileUpload"
-import Login from "./components/Login"
 
 function App() {
   const [user, setUser] = useState(() => {
-    // Check localStorage for existing session on page load
     const saved = localStorage.getItem("qa_user")
     return saved ? JSON.parse(saved) : null
   })
 
   const [testCases, setTestCases] = useState(defaultData.testCases)
-  const aggregatedData = aggregateTestData(testCases)
   const [filters, setFilters] = useState({
     search: "",
     status: "All statuses",
@@ -71,43 +71,66 @@ function App() {
     })
   }, [filters, testCases])
 
-  // Show login screen if not authenticated
-  if (!user) {
-    return <Login onLogin={handleLogin} />
-  }
+  if (!user) return <Login onLogin={handleLogin} />
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 max-w-6xl mx-auto">
+    <div className="min-h-screen bg-slate-100 p-5">
+      <div className="max-w-5xl mx-auto">
 
-      {/* Header with logout */}
-      <div className="flex items-start justify-between mb-6">
-        <div>
-          <h1 className="text-xl font-semibold text-gray-800">QA Dashboard</h1>
-          <p className="text-sm text-gray-400">Hapticware Intelligence · Last run: {lastRun}</p>
+        {/* Header */}
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-base font-semibold text-slate-900">QA Dashboard</h1>
+              <p className="text-xs text-slate-400">Hapticware Intelligence · Last run: {lastRun}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-full px-3 py-1.5">
+              <div className="w-5 h-5 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                {user.email[0].toUpperCase()}
+              </div>
+              <span className="text-xs text-slate-600">{user.email}</span>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="text-xs text-slate-400 hover:text-red-500 border border-slate-200 hover:border-red-200 px-3 py-1.5 rounded-full transition-colors bg-white"
+            >
+              Sign out
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-xs text-gray-400">{user.email}</span>
-          <button
-            onClick={handleLogout}
-            className="text-xs text-gray-500 hover:text-red-500 border border-gray-200 hover:border-red-200 px-3 py-1.5 rounded-lg transition-colors"
-          >
-            Sign out
-          </button>
+
+        {/* File upload */}
+        <div className="mb-5">
+          <FileUpload onDataLoaded={handleDataLoaded} />
         </div>
+
+        {/* Health + Stats + Trend */}
+        <div className="grid grid-cols-[200px_1fr] gap-4 mb-4">
+          <HealthCard testCases={filtered} />
+          <div className="flex flex-col gap-4">
+            <StatCards testCases={filtered} />
+            <TrendChart testCases={filtered} />
+          </div>
+        </div>
+
+        {/* Priority + Module */}
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <PriorityPanel testCases={filtered} />
+          <ModulePanel testCases={filtered} />
+        </div>
+
+        {/* Filters + Table */}
+        <FilterBar filters={filters} setFilters={setFilters} modules={modules} />
+        <TestTable testCases={filtered} />
+
       </div>
-
-      <FileUpload onDataLoaded={handleDataLoaded} />
-      <SummaryCards testCases={filtered} />
-
-      <div className="max-w-4xl mx-auto p-6 space-y-6">
-      
-
-      {/* 4. Stream transformed aggregated counts straight down to TrendChart */}
-      <TrendChart trendRuns={aggregatedData} />
-    </div>
-
-      <FilterBar filters={filters} setFilters={setFilters} modules={modules} />
-      <TestTable testCases={filtered} />
     </div>
   )
 }

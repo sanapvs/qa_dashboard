@@ -86,7 +86,7 @@ function Login({ onLogin }) {
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          Demo app — any credentials will work
+          Any credentials will work
         </p>
       </div>
     </div>
