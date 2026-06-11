@@ -2,7 +2,7 @@ function PriorityPanel({ testCases }) {
   const priorities = ["High", "Medium", "Low"]
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4">
+    <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
       <p className="text-xs font-semibold text-slate-600 mb-4">By priority</p>
       <div className="grid grid-cols-3 gap-3">
         {priorities.map(p => {
@@ -22,7 +22,7 @@ function PriorityPanel({ testCases }) {
           }[p]
 
           return (
-            <div key={p} className="bg-slate-50 border border-slate-200 rounded-lg p-3">
+            <div key={p} className="bg-slate-900 border border-slate-700 rounded-lg p-3">
               <p className={`text-xs font-semibold uppercase tracking-wider mb-2 ${labelColor}`}>{p}</p>
               <p className="font-mono text-xl font-medium text-slate-900 mb-2">{group.length}</p>
               <div className="h-1.5 bg-slate-200 rounded-full overflow-hidden flex mb-2">

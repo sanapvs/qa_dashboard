@@ -2,7 +2,7 @@ function ModulePanel({ testCases }) {
   const modules = [...new Set(testCases.map(t => t.module))].sort()
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4">
+    <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
       <p className="text-xs font-semibold text-slate-600 mb-4">By module</p>
       <div className="space-y-3">
         {modules.map(m => {

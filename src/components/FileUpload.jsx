@@ -151,16 +151,16 @@ function FileUpload({ onDataLoaded }) {
   return (
     <div className="mb-6">
       <div
-        onDrop={onDrop}
-        onDragOver={onDragOver}
-        onDragLeave={onDragLeave}
-        onClick={() => inputRef.current.click()}
-        className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
-          dragging
-            ? "border-blue-400 bg-blue-50"
-            : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
-        }`}
-      >
+  onDrop={onDrop}
+  onDragOver={onDragOver}
+  onDragLeave={onDragLeave}
+  onClick={() => inputRef.current.click()}
+  className={`cursor-pointer rounded-xl p-6 text-center transition-all border-2 border-dashed ${
+    dragging
+      ? "border-indigo-500 bg-indigo-900/20"
+      : "border-slate-600 bg-slate-800 hover:border-slate-500"
+  }`}
+>
         <input
           ref={inputRef}
           type="file"

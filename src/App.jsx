@@ -74,8 +74,8 @@ function App() {
   if (!user) return <Login onLogin={handleLogin} />
 
   return (
-    <div className="min-h-screen bg-slate-100 p-5">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen p-6" style={{ background: "#0F172A" }}>
+      <div>
 
         {/* Header */}
         <div className="flex items-center justify-between mb-5">

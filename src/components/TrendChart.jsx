@@ -61,7 +61,7 @@ function TrendChart({ testCases = [] }) {
   }, [testCases])
 
   return (
-    <div className="bg-white border border-slate-200 rounded-xl p-4">
+   <div className="bg-slate-800 border border-slate-700 rounded-xl p-4">
       <p className="text-xs font-medium text-slate-400 uppercase tracking-wide mb-4">
         Pass / fail trend timeline
       </p>

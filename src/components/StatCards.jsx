@@ -38,7 +38,7 @@ function StatCards({ testCases }) {
   return (
     <div className="grid grid-cols-3 gap-3">
       {cards.map(card => (
-        <div key={card.label} className="bg-white border border-slate-200 rounded-xl p-4">
+        <div key={card.label} className="bg-slate-800 border border-slate-700 rounded-xl p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-medium text-slate-500">{card.label}</span>
             <div className={`w-7 h-7 ${card.iconBg} rounded-lg flex items-center justify-center text-sm`}>
