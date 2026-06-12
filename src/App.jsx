@@ -30,9 +30,10 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem("qa_user")
-    setUser(null)
-  }
+  localStorage.removeItem("qa_token")
+  localStorage.removeItem("qa_user")
+  setUser(null)
+}
 
   function handleDataLoaded(newCases) {
     setTestCases(newCases)
