@@ -1,5 +1,9 @@
 # QA Dashboard
 
+## Demo credentials
+Email: ved@hapticware.com
+Password: password123
+
 A test visualization dashboard built with React + Vite + Tailwind CSS.
 
 ## Tech Stack
