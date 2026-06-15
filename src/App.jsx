@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react"
+import logo from "./components/logo.svg" 
 import defaultData from "./data/qa-mock-data.json"
 import Login from "./components/Login"
 import FileUpload from "./components/FileUpload"
@@ -81,11 +82,9 @@ function App() {
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-xl mb-4 overflow-hidden">
+                        <img src={logo} alt="Hapticware Logo" className="w-6 h-6 object-contain" />
+                      </div>
             <div>
               <h1 className="text-base font-semibold text-slate-900">QA Dashboard</h1>
               <p className="text-xs text-slate-400">Hapticware Intelligence · Last run: {lastRun}</p>
