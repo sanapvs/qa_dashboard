@@ -10,6 +10,7 @@ import PriorityPanel from "./components/PriorityPanel"
 import ModulePanel from "./components/ModulePanel"
 import FilterBar from "./components/FilterBar"
 import TestTable from "./components/TestTable"
+import StatusDonut from "./components/StatusDonut"
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -115,9 +116,12 @@ function App() {
         <div className="grid grid-cols-[200px_1fr] gap-4 mb-4">
           <HealthCard testCases={filtered} />
           <div className="flex flex-col gap-4">
-            <StatCards testCases={filtered} />
-            <TrendChart testCases={filtered} />
-          </div>
+  <StatCards testCases={filtered} />
+  <div className="grid grid-cols-[1.6fr_1fr] gap-4">
+    <TrendChart testCases={filtered} />
+    <StatusDonut testCases={filtered} />
+  </div>
+</div>
         </div>
 
         {/* Priority + Module */}
