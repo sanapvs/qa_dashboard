@@ -31,6 +31,7 @@ qa_dashboard/
 │   ├── server.js          # Express API: login, register, token verification
 │   ├── database.js        # SQLite connection and schema
 │   ├── seed.js             # Creates a default demo user
+│   ├── mailer.js           # sends mail
 │   └── .env                # JWT secret (not committed)
 ├── src/
 │   ├── components/
