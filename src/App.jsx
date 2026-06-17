@@ -6,8 +6,6 @@ import FileUpload from "./components/FileUpload"
 import HealthCard from "./components/HealthCard"
 import StatCards from "./components/StatCards"
 import TrendChart from "./components/TrendChart"
-import PriorityPanel from "./components/PriorityPanel"
-import ModulePanel from "./components/ModulePanel"
 import FilterBar from "./components/FilterBar"
 import TestTable from "./components/TestTable"
 import StatusDonut from "./components/StatusDonut"
@@ -124,11 +122,7 @@ function App() {
 </div>
         </div>
 
-        {/* Priority + Module */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <PriorityPanel testCases={filtered} />
-          <ModulePanel testCases={filtered} />
-        </div>
+
 
         {/* Filters + Table */}
         <FilterBar filters={filters} setFilters={setFilters} modules={modules} />
