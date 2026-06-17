@@ -63,12 +63,12 @@ function FileUpload({ onDataLoaded }) {
       header: true,
       skipEmptyLines: true,
     })
-
+    
     if (result.errors.length > 0) {
       setError("CSV parse error: " + result.errors[0].message)
       return
     }
-
+    
     // Normalize CSV rows to match our test case shape
     const cases = result.data.map((row, i) => ({
       id: row.id || row.ID || `TC-${String(i + 1).padStart(3, "0")}`,
