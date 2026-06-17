@@ -134,8 +134,8 @@ function Login({ onLogin }) {
           <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-xl mb-4 overflow-hidden">
             <img src={logo} alt="Hapticware Logo" className="w-6 h-6 object-contain" />
           </div>
-          <h1 className="text-xl font-semibold text-white">QA Dashboard</h1>
-          <p className="text-sm text-slate-400 mt-1">Hapticware Intelligence</p>
+          <h1 className="text-xl font-semibold text-white">Hapticware</h1>
+          <p className="text-sm text-slate-400 mt-1">The last ops stack you'll ever need.</p>
         </div>
 
         {mode !== "verify" && (
@@ -262,9 +262,7 @@ function Login({ onLogin }) {
           </button>
         </div>
 
-        <p className="text-center text-xs text-slate-600 mt-6">
-          Secured with JWT + bcrypt
-        </p>
+       
       </div>
     </div>
   )
