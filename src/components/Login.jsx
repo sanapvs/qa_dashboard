@@ -135,7 +135,7 @@ function Login({ onLogin }) {
             <img src={logo} alt="Hapticware Logo" className="w-6 h-6 object-contain" />
           </div>
           <h1 className="text-xl font-semibold text-white">Hapticware</h1>
-          <p className="text-sm text-slate-400 mt-1">The last ops stack you'll ever need.</p>
+          <p className="text-sm text-slate-400 mt-1">The only ops stack you'll ever need.</p>
         </div>
 
         {mode !== "verify" && (
